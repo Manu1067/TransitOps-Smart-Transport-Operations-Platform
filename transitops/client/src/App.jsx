@@ -1,8 +1,9 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import Layout from '../../../TransitOps-Smart-Transport-Operations-Platform/transitops/client/src/layout/Layout';
-import ProtectedRoute from '../../../TransitOps-Smart-Transport-Operations-Platform/transitops/client/src/routes/ProtectedRoute';
-import RoleRoute from '../../../TransitOps-Smart-Transport-Operations-Platform/transitops/client/src/routes/RoleRoute';
-import { ROLES } from '../../../TransitOps-Smart-Transport-Operations-Platform/transitops/client/src/utils/constants';
+import Layout from './components/layout/Layout';
+import VehicleDetail from './pages/vehicles/VehicleDetail';
+import ProtectedRoute from './routes/ProtectedRoute';
+import RoleRoute from './routes/RoleRoute';
+import { ROLES } from './utils/constants';
 
 function PageStub({ title, description }) {
   return (
@@ -65,10 +66,7 @@ export default function App() {
                   element={<PageStub title="Edit Vehicle" description="Update vehicle details." />}
                 />
               </Route>
-              <Route
-                path=":id"
-                element={<PageStub title="Vehicle Details" description="View vehicle profile and history." />}
-              />
+              <Route path=":id" element={<VehicleDetail />} />
             </Route>
 
             <Route path="/drivers">
