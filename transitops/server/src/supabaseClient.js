@@ -1,15 +1,17 @@
 const { createClient } = require('@supabase/supabase-js');
 
 const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
 
-if (!supabaseUrl || !supabaseServiceRoleKey) {
-  throw new Error(
-    'Missing Supabase configuration. Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY environment variables.'
-  );
+if (!supabaseUrl) {
+  throw new Error('Missing required environment variable: SUPABASE_URL');
 }
 
-const supabase = createClient(supabaseUrl, supabaseServiceRoleKey, {
+if (!supabaseServiceKey) {
+  throw new Error('Missing required environment variable: SUPABASE_SERVICE_KEY');
+}
+
+const supabase = createClient(supabaseUrl, supabaseServiceKey, {
   auth: {
     autoRefreshToken: false,
     persistSession: false,
